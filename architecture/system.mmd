@@ -1,0 +1,15 @@
+flowchart TD
+    A["Agents - Rust on Hosts"] -->|"Binary Proto"| B["Backend - Go"]
+    A -.|P2P Sync|.-> A
+    B -->|"SQL Insert"| C["TimescaleDB"]
+    B -->|"Prometheus Metrics"| D["Prometheus"]
+    B -->|"REST Queries"| E["Grafana Dashboards"]
+    B -->|"gRPC"| F["ML Module - Python"]
+    F -->|"DB Query"| C
+    F -->|"Generate Rules"| G["iptables Blocker"]
+    F -->|"gRPC Streaming Alerts"| B
+    B -->|"Deploy"| H["Honeypot - Docker Container"]
+    D -->|"Data Source"| E
+    I["User/Admin"] -->|"Grafana UI"| E
+    I -->|"REST API"| B
+    F -->|"Redirect Traffic"| J["Sandbox"]
